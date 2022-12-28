@@ -1,0 +1,1 @@
+# solucionaticaANP2022
