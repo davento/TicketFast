@@ -1,0 +1,26 @@
+{
+  "name": "ticketfast",
+  "version": "1.0.0",
+  "description": "Package for TicketFast app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davento/TicketFast.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davento/TicketFast/issues"
+  },
+  "homepage": "https://github.com/davento/TicketFast#readme",
+  "dependencies": {
+    "body-parser": "*",
+    "ejs": "^3.1.8",
+    "express": "*",
+    "morgan": "*",
+    "neo4j-driver": "*"
+  }
+}
