@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,'public')));
 
-var driver = neo4j.driver('neo4j+s://bd720e6b.databases.neo4j.io',
-neo4j.auth.basic('postulante', 'solucionatica2022'), 
+const {URI, username, password} = require('./credentials.js');
+var driver = neo4j.driver(URI, neo4j.auth.basic(username, password), 
 {/* encrypted: 'ENCRYPTION_OFF' */});
 const session = driver.session({database:"neo4j"});
 
