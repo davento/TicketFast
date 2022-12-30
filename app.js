@@ -3,6 +3,7 @@ const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const neo4j = require('neo4j-driver');
+const reclut = 'Abril';
 
 const app = express();
 
@@ -45,12 +46,24 @@ app.get('/berlin', (req,res) => {
     res.render('berlin', {berlin:anp.berlin});
 });
 
-app.get('/berlin/ticket', (req,res) => {
-  let totalPrice = req.body.quantity * anp.berlin.price;
-  const createCommand = ''; //CREATE (n:ticket {})
+app.post('/berlin/ticket', (req,res) => {
+  let quantity = req.body.quantity;
+  let totalPrice = quantity * anp.berlin.price;
+  const createCommand = `
+  CREATE (boleto:BOLETO {reclut:$reclutParam}) -[:TIENE]-> (pago:PAGO {cantidad_boletos:$quantityParam, total:$totalParam})
+  WITH boleto, pago
+  MATCH(berlin:ANP {nombre: "Bosque Berlín"})
+  WITH berlin, boleto
+  CREATE(berlin)-[:TIENE]-> (boleto)
+  `;
+  const params = {reclutParam: reclut, quantityParam: quantity, totalParam: totalPrice};
   session
-    .run(createCommand, {price:price}) //fix this
-    .then((result) => {})
+    .run(createCommand, params)
+    .then((result) => {
+      console.log(quantity);
+      console.log(totalPrice);
+      res.redirect('confirm');
+    })
     .catch((err)=>{
       res.status(err.status || 400);
       console.log(err);
@@ -61,6 +74,28 @@ app.get('/berlin/ticket', (req,res) => {
 
 app.get('/kakiri', (req,res) => {
     res.render('kakiri', {kakiri:anp.kakiri});
+});
+
+app.get('/kakiri/ticket', (req,res) => {
+  let quantity = req.body.quantity;
+  let totalPrice = quantity * anp.kakiri.price;
+  const createCommand = `
+  CREATE (boleto:BOLETO {reclut:$reclutParam}) -[:TIENE]-> (pago:PAGO {cantidad_boletos:$quantityParam, total:$totalParam})
+  WITH boleto, pago
+  MATCH(kakiri:ANP {nombre: "Kakiri Uka"})
+  WITH kakiri, boleto
+  CREATE(kakiri)-[:TIENE]-> (boleto)
+  `;
+  const params = {reclutParam: reclut, quantityParam: quantity, totalParam: totalPrice};
+  session
+    .run(createCommand, params)
+    .then((result) => {
+      res.redirect('confirm');
+    })
+    .catch((err)=>{
+      res.status(err.status || 400);
+      console.log(err);
+    });
 });
 
 app.get('/sabalillo', (req,res) => {
