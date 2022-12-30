@@ -131,3 +131,4 @@ dist
 
 # Sensitive information
 ./credentials.js
+.env
