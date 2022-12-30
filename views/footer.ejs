@@ -1,0 +1,19 @@
+</main>
+<footer id="footer" class="footer">
+    <div class="copyright">
+        &copy; Copyright <strong><span>Solucionatica</span></strong>. All Rights Reserved
+    </div>
+</footer>
+
+<script type="text/javascript">
+    $('.sub').click(()=>{
+        if($(this).next().val > 0)
+            $(this).next().val(+$(this).next.val() - 1);
+    });
+    $('.add').click(()=>{
+        $(this).prev().val(+$(this).prev.val() + 1);
+    });
+</script>
+
+</body>
+</html>

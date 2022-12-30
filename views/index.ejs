@@ -1,1 +1,53 @@
+<%- include('header') -%>
 <h1>Listado de ANPs</h1>
+<div class="wrapper">
+    <div class="item">
+        <b><%= berlin.name %></b>
+        <img src= <%= berlin.image %> >
+        <table>
+            <tr>
+                <td>
+                    <form action="/berlin">
+                        <button>COMPRAR</button>
+                    </form>
+                </td>
+                <td>
+                    <%= berlin.price %> PEN
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="item">
+        <b><%= kakiri.name %></b>
+        <img src= <%= kakiri.image %> >
+        <table>
+            <tr>
+                <td>
+                    <form action="/kakiri">
+                        <button>COMPRAR</button>
+                    </form>
+                </td>
+                <td>
+                    <%= kakiri.price %> PEN
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="item">
+        <b><%= sabalillo.name %></b>
+        <img src= <%= sabalillo.image %> >
+        <table>
+            <tr>
+                <td>
+                    <form action="/sabalillo">
+                        <button>COMPRAR</button>
+                    </form>
+                </td>
+                <td>
+                    <%= sabalillo.price %> PEN
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<%- include('footer') -%>

@@ -25,12 +25,4 @@
     </div>
 </div>
 
-<script>
-    $('.sub').click(()=>{
-        if($(this).next().val > 0)
-            $(this).next().val(+$(this).next.val() - 1);
-    });
-    $('.add').click(()=>{
-        $(this).prev().val(+$(this).prev.val() + 1);
-    });
-</script>
+<%- include('footer') -%>

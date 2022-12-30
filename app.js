@@ -20,9 +20,24 @@ var driver = neo4j.driver(URI, neo4j.auth.basic(username, password),
 const session = driver.session({database:"neo4j"});
 
 // anp info
-const berlin = require('anp_berlin.js');
-const kakiri = require('anp_kakiri.js');
-const sabalillio = require('anp_sabalillio.js');
+const {anp} = require('./anp');
 
-// app.get('/', (req, res) => {
-// });
+
+app.get('/', (req, res) => {
+  res.render('index', {
+    berlin: anp.berlin,
+    kakiri: anp.kakiri,
+    sabalillo: anp.sabalillo,
+    anp: anp
+  })
+});
+
+
+
+// Run app
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`The server is listening from http://localhost:${PORT}`);
+});
+
+module.exports = app;
