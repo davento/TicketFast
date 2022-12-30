@@ -1,6 +1,6 @@
 const anp = {
     'berlin': {
-        name: "Bosque Berlin",
+        name: "Bosque Berlín",
         image: "https://www.actualidadambiental.pe/wp-content/uploads/2017/02/ANP-22-de-24-700x467.jpg",
         description: `Para conocer el ANP Bosque Berlín tiene que salir desde Bagua Grande. Vaya al paradero Alto Perú y tome los colectivos que toma la ruta Colicate, Tomocho, Vista hermosa, hasta llegar a Santa Clara.
         \n\n

@@ -6,12 +6,19 @@
 </footer>
 
 <script type="text/javascript">
-    $('.sub').click(()=>{
-        if($(this).next().val > 0)
-            $(this).next().val(+$(this).next.val() - 1);
-    });
-    $('.add').click(()=>{
-        $(this).prev().val(+$(this).prev.val() + 1);
+    let inputQuantity = document.getElementById('quantity');
+    let totalPrice = document.getElementById('result');
+
+    function updatePrice(q) {
+        let price = q * ticketPrice;
+        return price;
+    }
+
+    inputQuantity.addEventListener('input', function(e) {
+        let value = e.target.value;
+        if (!isNaN(value)) {
+            totalPrice.innerHTML = updatePrice(value);
+        }
     });
 </script>
 

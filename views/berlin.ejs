@@ -1,4 +1,7 @@
 <%- include('header') -%>
+<script type="text/javascript">
+    ticketPrice = <%= berlin.price %>;
+</script>
 <h1>Detalle de la ANP</h1>
 
 <div class="container">
@@ -13,12 +16,10 @@
         <div class="subrow">
             <form method="post" action="/berlin/ticket">
                 <div class="column">
+                    <p>Precio Unitario: S/<span id="price"> <%= berlin.price %></span>.00</p>
                     <label>Cantidad: </label>
-                    <input type="number" name="quantity" id="quantity" min="1">
-                    <label> Importe total: <%= berlin.price %> </label>
-                </div>
-                <div class="column">
-                    .
+                    <input type="number" name="quantity" aria-labelledby="quantity" id="quantity" min="1">
+                    <p> Importe total: S/<span id="result"></span>.00</p>
                 </div>
                 <div class="column">
                     <label>Email de confirmación:</label>
