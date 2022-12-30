@@ -76,7 +76,7 @@ app.get('/kakiri', (req,res) => {
     res.render('kakiri', {kakiri:anp.kakiri});
 });
 
-app.get('/kakiri/ticket', (req,res) => {
+app.post('/kakiri/ticket', (req,res) => {
   let quantity = req.body.quantity;
   let totalPrice = quantity * anp.kakiri.price;
   const createCommand = `
@@ -100,6 +100,28 @@ app.get('/kakiri/ticket', (req,res) => {
 
 app.get('/sabalillo', (req,res) => {
     res.render('sabalillo', {sabalillo:anp.sabalillo});
+});
+
+app.post('/sabalillo/ticket', (req,res) => {
+  let quantity = req.body.quantity;
+  let totalPrice = quantity * anp.sabalillo.price;
+  const createCommand = `
+  CREATE (boleto:BOLETO {reclut:$reclutParam}) -[:TIENE]-> (pago:PAGO {cantidad_boletos:$quantityParam, total:$totalParam})
+  WITH boleto, pago
+  MATCH(sabalillo:ANP {nombre: "Sabalillo"})
+  WITH sabalillo, boleto
+  CREATE(sabalillo)-[:TIENE]-> (boleto)
+  `;
+  const params = {reclutParam: reclut, quantityParam: quantity, totalParam: totalPrice};
+  session
+    .run(createCommand, params)
+    .then((result) => {
+      res.redirect('confirm');
+    })
+    .catch((err)=>{
+      res.status(err.status || 400);
+      console.log(err);
+    });
 });
 
 
