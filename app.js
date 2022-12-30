@@ -22,7 +22,7 @@ const session = driver.session({database:"neo4j"});
 // anp info
 const {anp} = require('./anp');
 
-
+// redirects
 app.get('/', (req, res) => {
   res.render('index', {
     berlin: anp.berlin,
@@ -32,6 +32,40 @@ app.get('/', (req, res) => {
   })
 });
 
+app.get('/index', (req, res)=> {
+  res.render('index', {
+    berlin: anp.berlin,
+    kakiri: anp.kakiri,
+    sabalillo: anp.sabalillo,
+    anp: anp
+  })
+});
+
+app.get('/berlin', (req,res) => {
+    res.render('berlin', {berlin:anp.berlin});
+});
+
+app.get('/berlin/ticket', (req,res) => {
+  let totalPrice = req.body.quantity * anp.berlin.price;
+  const createCommand = ''; //CREATE (n:ticket {})
+  session
+    .run(createCommand, {price:price}) //fix this
+    .then((result) => {})
+    .catch((err)=>{
+      res.status(err.status || 400);
+      console.log(err);
+    });
+  res.redirect('confirm');
+});
+
+
+app.get('/kakiri', (req,res) => {
+    res.render('kakiri', {kakiri:anp.kakiri});
+});
+
+app.get('/sabalillo', (req,res) => {
+    res.render('sabalillo', {sabalillo:anp.sabalillo});
+});
 
 
 // Run app

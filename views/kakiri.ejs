@@ -1,3 +1,4 @@
+<%- include('header') -%>
 <h1>Detalle de la ANP</h1>
 
 <div class="container">
@@ -10,27 +11,23 @@
             <p><%= kakiri.description %></p>
         </div>
         <div class="subrow">
-            <div class="column">
-                <form method="post" action="/kakiri/ticket">
+            <form method="post" action="/kakiri/ticket">
+                <div class="column">
                     <label>Cantidad: </label>
-                    <button type="button" id="sub" class="sub">-</button>
-                    <input type="number" name="quantity" id="quantity">
-                    <button type="button" id="add" class="add">+</button>
-                    <br>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
-            <div class="column"> Importe total: <% let total = kakiri.price * document.getElementByID('quantity').value %> </div>
+                    <input type="number" name="quantity" id="quantity" min="1">
+                    <label> Importe total: <%= kakiri.price %> </label>
+                </div>
+                <div class="column">
+                    .
+                </div>
+                <div class="column">
+                    <label>Email de confirmación:</label>
+                    <input type="text" name="email" id="email">
+                </div>
+                <input type="submit" value="Submit">
+            </form>
         </div>
     </div>
 </div>
 
-<script>
-    $('.sub').click(()=>{
-        if($(this).next().val > 0)
-            $(this).next().val(+$(this).next.val() - 1);
-    });
-    $('.add').click(()=>{
-        $(this).prev().val(+$(this).prev.val() + 1);
-    });
-</script>
+<%- include('footer') -%>

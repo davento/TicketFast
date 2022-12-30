@@ -1076,7 +1076,11 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 .wrapper div img {
-  height: 50%
+  height: 50%;
+}
+.wrapper div button:hover {
+  background-color: #18d26e;
+  color: white;
 }
 
 /*--------------------------------------------------------------
