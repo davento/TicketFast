@@ -62,13 +62,12 @@ app.post('/berlin/ticket', (req,res) => {
     .then((result) => {
       console.log(quantity);
       console.log(totalPrice);
-      res.redirect('confirm');
+      res.render('confirm');
     })
     .catch((err)=>{
       res.status(err.status || 400);
       console.log(err);
     });
-  res.redirect('confirm');
 });
 
 
@@ -90,7 +89,7 @@ app.post('/kakiri/ticket', (req,res) => {
   session
     .run(createCommand, params)
     .then((result) => {
-      res.redirect('confirm');
+      res.render('confirm');
     })
     .catch((err)=>{
       res.status(err.status || 400);
@@ -116,7 +115,7 @@ app.post('/sabalillo/ticket', (req,res) => {
   session
     .run(createCommand, params)
     .then((result) => {
-      res.redirect('confirm');
+      res.render('confirm');
     })
     .catch((err)=>{
       res.status(err.status || 400);
