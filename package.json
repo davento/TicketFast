@@ -2,12 +2,8 @@
   "name": "ticketfast",
   "version": "1.0.0",
   "description": "Package for TicketFast app",
-  "main": "index.js",
-  "engines": {
-    "node": "14.x"
-  },
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
